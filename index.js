@@ -32,6 +32,10 @@ bot.start((ctx) => {
   );
 });
 
+bot.command("ping", (ctx) => {
+  ctx.reply("✅ Bot is awake and responding");
+});
+
 bot.on("text", (ctx) => {
   try {
     const lines = ctx.message.text.split("\n");
@@ -139,12 +143,16 @@ bot.on("text", (ctx) => {
     ctx.reply(response, { parse_mode: "Markdown" });
   } catch (err) {
     console.error("Bot error:", err);
-    ctx.reply("❌ Something went wrong. Please try again.");
+    ctx.reply(
+      "⚠️ Bot is currently unstable.\n" +
+        "Please wait a moment and try again.\n\n" +
+        "If this continues, redeploy the bot."
+    );
   }
 });
 
 // Start bot
-bot.launch();
+bot.launch({ dropPendingUpdates: true });
 
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
