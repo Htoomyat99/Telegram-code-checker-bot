@@ -16,6 +16,7 @@ function normalizeLine(line) {
 
 // Validate exactly 18 alphanumeric characters
 function isValidCode(code) {
+  console.log(code, code.length);
   return /^[A-Za-z0-9]{18}$/.test(code);
 }
 
@@ -38,7 +39,7 @@ bot.command("ping", (ctx) => {
 
 bot.on("text", (ctx) => {
   try {
-    const lines = ctx.message.text.split("\n");
+    const lines = ctx.message.text.split(/\s+/);
 
     const validEntries = [];
     const invalidEntries = [];
