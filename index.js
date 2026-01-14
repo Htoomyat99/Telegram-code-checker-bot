@@ -9,9 +9,9 @@ if (!BOT_TOKEN) {
 
 const bot = new Telegraf(BOT_TOKEN);
 
-// Remove number
+// Remove numbering like 3. , 3), 3-
 function normalizeLine(line) {
-  return line.replace(/^\s*\d+[\.\)\-]?\s*/, "").trim();
+  return line.replace(/^\s*\d+[\.\)\-]\s*/, "").trim();
 }
 
 // Validate exactly 18 alphanumeric characters
